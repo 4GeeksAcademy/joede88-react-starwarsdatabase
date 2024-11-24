@@ -1,6 +1,6 @@
 const HomePageHeader = () => {
     return (
-        <header>
+        <header className="m-4">
             <div>
                 <h1>Bienvenid@s</h1>
             </div>

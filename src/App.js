@@ -1,5 +1,5 @@
-import './App.css';
-import HomePage from './pages/HomePage';
+import "./App.css";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   return (
@@ -7,6 +7,6 @@ const App = () => {
       <HomePage />
     </>
   );
-}
+};
 
 export default App;

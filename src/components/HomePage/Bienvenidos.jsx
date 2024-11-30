@@ -1,4 +1,4 @@
-const HomePageHeader = () => {
+const Bienvenidos = () => {
   return (
     <header className="m-4">
       <div>
@@ -8,4 +8,4 @@ const HomePageHeader = () => {
   );
 };
 
-export default HomePageHeader;
+export default Bienvenidos;

@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const HomePageContent = () => {
+const WelcomeAlert = () => {
   return (
     <Container fluid>
       <Row>
@@ -21,4 +21,4 @@ const HomePageContent = () => {
   );
 };
 
-export default HomePageContent;
+export default WelcomeAlert;

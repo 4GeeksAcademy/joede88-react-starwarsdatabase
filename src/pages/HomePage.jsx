@@ -1,11 +1,11 @@
-import HomePageContent from "../components/HomePage/HomePageContent";
-import HomePageHeader from "../components/HomePage/HomePageHeader";
+import Bienvenidos from "../components/HomePage/Bienvenidos";
+import WelcomeAlert from "../components/HomePage/WelcomeAlert";
 
 const HomePage = () => {
   return (
     <>
-      <HomePageHeader />
-      <HomePageContent />
+      <Bienvenidos/>
+      <WelcomeAlert/>
     </>
   );
 };

@@ -1,11 +1,15 @@
-import Bienvenidos from "../components/HomePage/Bienvenidos";
-import WelcomeAlert from "../components/HomePage/WelcomeAlert";
+import { Movies } from "../components/HomePage/Movies";
+import { People } from "../components/HomePage/People";
+import { Planets } from "../components/HomePage/AllPlanets";
+
 
 const HomePage = () => {
+
   return (
     <>
-      <Bienvenidos/>
-      <WelcomeAlert/>
+      <Movies /><hr />
+      <People /><hr />
+      <Planets />
     </>
   );
 };

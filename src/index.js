@@ -1,16 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter } from "react-router";
+
+import { BrowserRouter, Route, Routes } from "react-router";
+
+import { routerConfig } from "./routing/routerConfig";
+import { NavBar } from "./components/HomePage/Navbar";
+import { Film } from "./components/HomePage/Film";
+import { Character } from "./components/HomePage/Character";
+import { EachPlanet } from "./components/HomePage/EachPlanet";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <NavBar />
+      <Routes>
+        {routerConfig.map((route) => {
+          return (
+            <Route key={route.name} path={route.path} element={route.page} />
+          );
+        })}
+        <Route path="films/:uid" element={<Film />} />
+        <Route path="people/:uid" element={<Character />} />
+        <Route path="planets/:uid" element={<EachPlanet />} />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>,
 );

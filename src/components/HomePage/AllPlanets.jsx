@@ -25,15 +25,15 @@ export const Planets = () => {
     return (
         <div className="container-fluid">
             <h1 className="d-flex justify-content-center p-3">Planets</h1>
-            <Row xs={1} md={2} className="g-4">
+            <Row xs={1} md={2} className="g-2">
                 {Array.from(planets).map((planet, idx) => (
                     <Col key={idx}>
-                        <Card className="bg-black">
+                        <Card className="bg-black text-center">
                             <Card.Body className="text-warning">
                                 <Card.Title>
-                                    <h1>
+                                    <h2>
                                         {planet.name}
-                                    </h1>
+                                    </h2>
                                 </Card.Title>
                                 <Card.Text>
                                     <NavLink to={`/planets/${planet.uid}`} end>
@@ -45,6 +45,7 @@ export const Planets = () => {
                     </Col>
                 ))}
             </Row>
+            <hr />
         </div >
     )
 }

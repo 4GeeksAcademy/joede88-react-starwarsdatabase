@@ -22,17 +22,17 @@ export const People = () => {
     }
 
     return (
-        <div className="mt-3">
+        <div className=" container-fluid">
             <h1 className="d-flex justify-content-center p-3">People</h1>
-            <Row xs={1} md={2} className="g-4">
+            <Row xs={1} md={2} className="g-2">
                 {Array.from(people).map((person, idx) => (
                     <Col key={idx}>
-                        <Card className="bg-black">
+                        <Card className="bg-black text-center">
                             <Card.Body>
                                 <Card.Title className="text-warning">
-                                    <h1>
+                                    <h2>
                                         {person.name}
-                                    </h1>
+                                    </h2>
                                 </Card.Title>
                                 <Card.Text>
                                     <NavLink to={`/people/${person.uid}`} end>
@@ -44,6 +44,7 @@ export const People = () => {
                     </Col>
                 ))}
             </Row>
+            <hr />
         </div>
     );
 }

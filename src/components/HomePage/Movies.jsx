@@ -25,16 +25,17 @@ export const Movies = () => {
 
     return (
         <div className="container-fluid ">
+            <hr />
             <h1 className="d-flex justify-content-center p-3">Movies</h1>
-            <Row xs={1} md={2} className="g-4">
+            <Row xs={1} md={2} className="g-2">
                 {Array.from(movies).map((movie, idx) => (
                     <Col key={idx}>
-                        <Card className="bg-black">
+                        <Card className="bg-black text-center">
                             <Card.Body>
                                 <Card.Title className="text-warning">
-                                    <h1>
+                                    <h2>
                                     {movie.properties.title}
-                                    </h1>
+                                    </h2>
                                 </Card.Title>
                                 <Card.Text>
                                     <NavLink to={`/films/${movie.uid}`} end>
@@ -46,6 +47,7 @@ export const Movies = () => {
                     </Col>
                 ))}
             </Row>
+            <hr />
         </div>
     )
 }

@@ -7,8 +7,8 @@ const HomePage = () => {
 
   return (
     <>
-      <Movies /><hr />
-      <People /><hr />
+      <Movies />
+      <People />
       <Planets />
     </>
   );

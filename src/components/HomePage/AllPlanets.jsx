@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
-
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
+import { useContext, useEffect, useState } from "react"
 import { NavLink } from "react-router"
+
+import { ContextoFavoritos } from "../../context/Favoritos";
+
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 export const Planets = () => {
     const [planets, setPlanets] = useState([])
+    const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos)
 
     const getPlanets = () => {
         fetch("https://www.swapi.tech/api/planets/")
@@ -22,9 +22,15 @@ export const Planets = () => {
         getPlanets()
     }, [])
 
+    const isFavorite = (id, type) => {
+        return favoritos.some((fav) => {
+            return fav.id === id && fav.type === type
+        })
+    }
+
     return (
         <div className="container-fluid">
-            <h1 className="d-flex justify-content-center p-3">Planets</h1>
+            <h1 className="d-flex justify-content-center mt-5 p-3">Planets</h1>
             <Row xs={1} md={2} className="g-2">
                 {Array.from(planets).map((planet, idx) => (
                     <Col key={idx}>
@@ -37,8 +43,15 @@ export const Planets = () => {
                                 </Card.Title>
                                 <Card.Text>
                                     <NavLink to={`/planets/${planet.uid}`} end>
-                                        view more
+                                        <Button className="m-1">
+                                            view more
+                                        </Button>
                                     </NavLink>
+                                    <Button onClick={() => {
+                                        isFavorite(planet.uid, "planets")
+                                            ? deleteFavorite(planet.uid, "planets")
+                                            : addFavorite(planet.uid, planet.name, "planets")
+                                    }}>{isFavorite(planet.uid, "planets") ? "Unfav" : "Add to favs"}</Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

@@ -21,8 +21,8 @@ export const Film = () => {
 
     return (
         <>
-            <div className="container text-center bg-black">
-                <div className="col-md-6 offset-md-3 fs-1  text-warning">{film.opening_crawl}</div>
+            <div className="container text-center bg-black mt-5">
+                <div className="col-md-6 offset-md-3 fs-1 text-warning">{film.opening_crawl}</div>
             </div>
         </>
     )

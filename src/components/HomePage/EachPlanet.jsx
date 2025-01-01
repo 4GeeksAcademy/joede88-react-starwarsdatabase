@@ -21,16 +21,15 @@ export const EachPlanet = () => {
 
     return (
         <>
-            <div className="container text-center bg-black mt-3">
-                <div className="col-md-6 offset-md-3 fs-1 text-warning mb-5">
-                    <h1>
-                        {planet.name}
-                    </h1>
+            <div className="container-fluid bg-black mt-5">
+                <div className="col-md-6 offset-md-3 text-warning mb-5">
+                    <h1>{planet.name}</h1>
+                    <ul>
+                        <li>Terrain: {planet.terrain}</li>
+                        <li>Climate: {planet.climate}</li>
+                    </ul>
                 </div>
-                <div className="col-md-6 offset-md-3 fs-1 text-warning">
-                    <p>Terrain: {planet.terrain}</p>
-                    <p>Climate: {planet.climate}</p>
-                </div>
+
             </div>
         </>
     )

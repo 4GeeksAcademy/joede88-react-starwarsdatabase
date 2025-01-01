@@ -20,11 +20,18 @@ export const Character = () => {
     }
 
     return (
-        <div>
-            <h1>{character.name}</h1>
-            <p>
-            eyes color: {character.eye_color}
-            </p>
+        <div className="container-fluid bg-black mt-5">
+            <div className="col-md-6 offset-md-3 text-warning">
+                <h1>{character.name}</h1>
+                <ul>
+                    <li>
+                        Birth year: {character.birth_year}
+                    </li>
+                    <li>
+                        Eyes color: {character.eye_color}
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }

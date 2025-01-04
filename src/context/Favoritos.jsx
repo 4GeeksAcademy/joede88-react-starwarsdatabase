@@ -4,11 +4,15 @@ export const ContextoFavoritos = createContext({
     favoritos: [],
     setFavoritos: () => { },
     deleteFavorite: () => { },
-    addFavorite: () => { }
+    addFavorite: () => { },
+    isLoading: false,
+    setIsLoading: ()=> {}
 })
 
 export const ProviderFavoritos = ({ children }) => {
     const [favoritos, setFavoritos] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
+   
 
     const addFavorite = (id, name, type) => {
         setFavoritos([
@@ -30,7 +34,7 @@ export const ProviderFavoritos = ({ children }) => {
     }
 
     return (
-        <ContextoFavoritos.Provider value={{ favoritos, setFavoritos, addFavorite, deleteFavorite }}>
+        <ContextoFavoritos.Provider value={{ favoritos, setFavoritos, addFavorite, deleteFavorite,isLoading,setIsLoading }}>
             {children}
         </ContextoFavoritos.Provider>
     )

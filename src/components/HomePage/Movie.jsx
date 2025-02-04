@@ -11,9 +11,9 @@ export const Movie = () => {
     useEffect(() => {
         setIsLoading(true)
         getMovie(uid)
-            .then((movie) => {
-                setFilm(movie.properties)
+            .then((movie) => {setFilm(movie.properties)
             })
+            .finally(()=>setIsLoading(false))
     }, [uid,setIsLoading])
 
     return (

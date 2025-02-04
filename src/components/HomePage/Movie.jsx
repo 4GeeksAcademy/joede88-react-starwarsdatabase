@@ -1,26 +1,20 @@
-import { useCallback, useContext,useEffect, useState } from "react"
+import { useContext,useEffect, useState } from "react"
 import { useParams } from "react-router";
 import { ContextoFavoritos } from "../../context/Favoritos";
+import { getMovie } from "../../services/api/film";
 
-export const Film = () => {
+export const Movie = () => {
     const [film, setFilm] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
     let { uid } = useParams();
 
-    const getFilm = useCallback((id) => {
-        fetch(`https://www.swapi.tech/api/films/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setFilm(data.result.properties)
-            })
-            .finally(()=>setIsLoading(false))
-            .catch(err => console.error(err))
-    },[setIsLoading])
-
     useEffect(() => {
         setIsLoading(true)
-        getFilm(uid)
-    }, [uid,getFilm,setIsLoading])
+        getMovie(uid)
+            .then((movie) => {
+                setFilm(movie.properties)
+            })
+    }, [uid,setIsLoading])
 
     return (
         <>

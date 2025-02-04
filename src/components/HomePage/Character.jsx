@@ -1,26 +1,22 @@
-import { useCallback, useContext,useEffect, useState } from "react"
+import { useContext,useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { ContextoFavoritos } from "../../context/Favoritos"
+import { getPerson } from "../../services/api/people"
 
 export const Character = () => {
     const [character, setCharacter] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
-    let { uid } = useParams()
+    const { uid } = useParams()
 
-    const getChar = useCallback((id) => {
-        fetch(`https://www.swapi.tech/api/people/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setCharacter(data.result.properties)
-            })
-            .finally(()=>setIsLoading(false))
-            .catch(err => console.error(err))
-    },[setIsLoading])
 
     useEffect(() => {
         setIsLoading(true)
-        getChar(uid)
-    }, [uid,getChar,setIsLoading])
+        getPerson(uid)
+            .then((person) => {
+                setCharacter(person.properties)
+            })
+            .finally(()=>setIsLoading(false))
+    }, [uid,setIsLoading])
 
     return (
         <div className="container-fluid bg-black mt-5">

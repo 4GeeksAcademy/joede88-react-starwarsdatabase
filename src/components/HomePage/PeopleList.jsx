@@ -5,29 +5,22 @@ import { ContextoFavoritos } from "../../context/Favoritos";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
 
-export const People = () => {
+import { getPeople } from "../../services/api/people"
+
+export const PeopleList = () => {
     const [people, setPeople] = useState([])
     const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos)
 
     useEffect(() => {
         getPeople()
+            .then((people) => {setPeople(people)})
     }, [])
-
-    const getPeople = () => {
-        fetch(`https://www.swapi.tech/api/people/`)
-            .then(res => res.json())
-            .then(data => {
-                setPeople(data.results)
-            })
-            .catch(err => console.error(err))
-    }
-
+            
     const isFavorite = (id, type) => {
         return favoritos.some((fav) => {
             return fav.id === id && fav.type === type
         })
     }
-
 
     return (
         <div className=" container-fluid">

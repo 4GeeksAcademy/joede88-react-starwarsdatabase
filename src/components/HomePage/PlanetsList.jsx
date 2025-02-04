@@ -4,22 +4,18 @@ import { NavLink } from "react-router"
 import { ContextoFavoritos } from "../../context/Favoritos";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { getPlanetsList } from "../../services/api/planets";
 
 export const Planets = () => {
     const [planets, setPlanets] = useState([])
     const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos)
 
-    const getPlanets = () => {
-        fetch("https://www.swapi.tech/api/planets/")
-            .then(res => res.json())
-            .then(data => {
-                setPlanets(data.results)
-            })
-            .catch(err => console.error(err))
-    }
 
     useEffect(() => {
-        getPlanets()
+        getPlanetsList()
+            .then(planets => {
+                setPlanets(planets)
+            })
     }, [])
 
     const isFavorite = (id, type) => {

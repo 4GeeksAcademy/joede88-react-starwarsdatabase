@@ -4,22 +4,16 @@ import { NavLink } from "react-router";
 import { ContextoFavoritos } from "../../context/Favoritos";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { getMoviesList } from "../../services/api/film";
 
 export const Movies = () => {
     const [movies, setMovies] = useState([])
     const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos);
 
-    const getMovies = () => {
-        fetch(`https://www.swapi.tech/api/films/`)
-            .then(res => res.json())
-            .then(data => {
-                setMovies(data.result)
-            })
-            .catch(err => console.error(err))
-    }
 
     useEffect(() => {
-        getMovies()
+        getMoviesList()
+            .then(movies => {setMovies(movies)})
     }, [])
 
     const isFavorite = (id, type) => {

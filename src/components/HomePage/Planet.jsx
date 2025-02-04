@@ -1,28 +1,21 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import { useParams } from "react-router";
 import { ContextoFavoritos } from "../../context/Favoritos";
+import { getPlanet } from "../../services/api/planets";
 
-
-export const EachPlanet = () => {
+export const Planet = () => {
     const [planet, setPlanet] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
     let { uid } = useParams();
 
-    const getPlanet = useCallback((id) => {
-        fetch(`https://www.swapi.tech/api/planets/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                setPlanet(data.result.properties)
-            })
-            .finally(()=>setIsLoading(false))
-            .catch(err => console.error(err))
-    }, [setIsLoading])
-
     useEffect(() => {
         setIsLoading(true)
         getPlanet(uid)
-    }, [uid,getPlanet,setIsLoading])
+            .then(planet => {setPlanet(planet.properties)
+            })
+            .finally(()=>setIsLoading(false))
+    }, [uid,setIsLoading])
 
     return (
         <>

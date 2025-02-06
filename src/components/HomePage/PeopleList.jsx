@@ -36,16 +36,16 @@ export const PeopleList = () => {
                                     </h2>
                                 </Card.Title>
                                 <Card.Text>
-                                    <NavLink to={`/people/${person.uid}`} end>
+                                    <NavLink to={`/people/${person.id}`} end>
                                         <Button className="m-1">
                                             view more
                                         </Button>
                                     </NavLink>
                                     <Button onClick={() => {
-                                        isFavorite(person.uid, "people")
-                                            ? deleteFavorite(person.uid, "people")
-                                            : addFavorite(person.uid, person.name, "people")
-                                    }}>{isFavorite(person.uid, "people") ? "Unfav" : "Add to favs"}</Button>
+                                        isFavorite(person.id, "people")
+                                            ? deleteFavorite(person.id, "people")
+                                            : addFavorite(person.id, person.name, "people")
+                                    }}>{isFavorite(person.id, "people") ? "Unfav" : "Add to favs"}</Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

@@ -13,7 +13,7 @@ export const ProviderFavoritos = ({ children }) => {
     const [favoritos, setFavoritos] = useState([])
     const [isLoading, setIsLoading] = useState(false);
    
-
+    
     const addFavorite = (id, name, type) => {
         setFavoritos([
             ...favoritos,

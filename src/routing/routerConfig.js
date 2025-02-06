@@ -12,7 +12,7 @@ export const routerConfig = [
 
   {
     name: "Movies",
-    path: "/movies",
+    path: "/films",
     page: <Movies />,
   },
   {

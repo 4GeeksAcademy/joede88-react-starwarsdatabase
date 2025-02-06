@@ -38,16 +38,16 @@ export const Planets = () => {
                                     </h2>
                                 </Card.Title>
                                 <Card.Text>
-                                    <NavLink to={`/planets/${planet.uid}`} end>
+                                    <NavLink to={`/planets/${planet.id}`} end>
                                         <Button className="m-1">
                                             view more
                                         </Button>
                                     </NavLink>
                                     <Button onClick={() => {
-                                        isFavorite(planet.uid, "planets")
-                                            ? deleteFavorite(planet.uid, "planets")
-                                            : addFavorite(planet.uid, planet.name, "planets")
-                                    }}>{isFavorite(planet.uid, "planets") ? "Unfav" : "Add to favs"}</Button>
+                                        isFavorite(planet.id, "planets")
+                                            ? deleteFavorite(planet.id, "planets")
+                                            : addFavorite(planet.id, planet.name, "planets")
+                                    }}>{isFavorite(planet.id, "planets") ? "Unfav" : "Add to favs"}</Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

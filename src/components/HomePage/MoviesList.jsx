@@ -13,7 +13,10 @@ export const Movies = () => {
 
     useEffect(() => {
         getMoviesList()
-            .then(movies => {setMovies(movies)})
+            .then(movies => {
+                console.log(movies);
+                
+                setMovies(movies)})
     }, [])
 
     const isFavorite = (id, type) => {
@@ -32,20 +35,20 @@ export const Movies = () => {
                             <Card.Body>
                                 <Card.Title className="text-warning">
                                     <h2>
-                                        {movie.properties.title}
+                                        {movie.title}
                                     </h2>
                                 </Card.Title>
                                 <Card.Text>
-                                    <NavLink to={`/films/${movie.uid}`} end>
+                                    <NavLink to={`/films/${movie.id}`} end>
                                         <Button className="m-1">
                                             view more
                                         </Button>
                                     </NavLink>
                                     <Button onClick={() => {
-                                        isFavorite(movie.uid, "films")
-                                            ? deleteFavorite(movie.uid, "films")
-                                            : addFavorite(movie.uid, movie.properties.title, "films")
-                                    }}>{isFavorite(movie.uid, "films") ? "Unfav" : "Add to favs"}</Button>
+                                        isFavorite(movie.id, "films")
+                                            ? deleteFavorite(movie.id, "films")
+                                            : addFavorite(movie.id, movie.title, "films")
+                                    }}>{isFavorite(movie.id, "films") ? "Unfav" : "Add to favs"}</Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

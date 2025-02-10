@@ -6,15 +6,16 @@ import { getMovie } from "../../services/api/film";
 export const Movie = () => {
     const [film, setFilm] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
-    let { uid } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         setIsLoading(true)
-        getMovie(uid)
-            .then((movie) => {setFilm(movie.properties)
+        getMovie(id)
+            .then((movie) => {
+                setFilm(movie)
             })
             .finally(()=>setIsLoading(false))
-    }, [uid,setIsLoading])
+    }, [id,setIsLoading])
 
     return (
         <>

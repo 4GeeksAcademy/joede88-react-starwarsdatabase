@@ -36,16 +36,14 @@ export const NavBar = () => {
                   title="Favorites"
                   menuVariant="light"
                 >
-                  {favoritos.map((fav) => {
+                  {Array.isArray(favoritos) && favoritos.map((fav) => {
                     return (
-                      <div key={`${fav.type}${fav.id}`}>
-                        <NavDropdown.Item>
-                          <NavLink to={`${fav.type}/${fav.id}`}>
+                        <NavDropdown.Item key={`${fav.type_enum}${fav.id}`}>
+                          <NavLink to={`${fav.type_enum}/${fav.external_id}`}>
                             {fav.name}
                           </NavLink>
-                          <Badge bg="danger" className='ms-2' onClick={() => { deleteFavorite(fav.id, fav.type) }}>X</Badge>
+                          <Badge bg="danger" className='ms-2' onClick={() => { deleteFavorite(fav.external_id, fav.type_enum) }}>X</Badge>
                         </NavDropdown.Item>
-                      </div>
                     )
                   })}
                 </NavDropdown>)}

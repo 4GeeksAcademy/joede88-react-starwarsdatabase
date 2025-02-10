@@ -25,9 +25,9 @@ root.render(
               <Route key={route.name} path={route.path} element={route.page} />
             );
           })}
-          <Route path="films/:uid" element={<Movie />} />
-          <Route path="people/:uid" element={<Character />} />
-          <Route path="planets/:uid" element={<Planet />} />
+          <Route path="films/:id" element={<Movie />} />
+          <Route path="people/:id" element={<Character />} />
+          <Route path="planets/:id" element={<Planet />} />
         </Routes>
       </ProviderFavoritos>
     </BrowserRouter>

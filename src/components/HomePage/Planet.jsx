@@ -7,15 +7,16 @@ import { getPlanet } from "../../services/api/planets";
 export const Planet = () => {
     const [planet, setPlanet] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
-    let { uid } = useParams();
+    let { id } = useParams();
 
     useEffect(() => {
         setIsLoading(true)
-        getPlanet(uid)
-            .then(planet => {setPlanet(planet.properties)
+        getPlanet(id)
+            .then(planet => {
+                setPlanet(planet)
             })
             .finally(()=>setIsLoading(false))
-    }, [uid,setIsLoading])
+    }, [id,setIsLoading])
 
     return (
         <>
@@ -24,7 +25,7 @@ export const Planet = () => {
                 {isLoading && <h1>Loading....</h1>}
                     <h1>{planet.name}</h1>
                     <ul>
-                        <li>Terrain: {planet.terrain}</li>
+                        <li>Population: {planet.population} people</li>
                         <li>Climate: {planet.climate}</li>
                     </ul>
                 </div>

@@ -6,17 +6,18 @@ import { getPerson } from "../../services/api/people"
 export const Character = () => {
     const [character, setCharacter] = useState([])
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
-    const { uid } = useParams()
-
+    const { id } = useParams()
 
     useEffect(() => {
         setIsLoading(true)
-        getPerson(uid)
+        getPerson(id)
             .then((person) => {
-                setCharacter(person.properties)
+                console.log(person);
+                
+                setCharacter(person)
             })
             .finally(()=>setIsLoading(false))
-    }, [uid,setIsLoading])
+    }, [id,setIsLoading])
 
     return (
         <div className="container-fluid bg-black mt-5">
@@ -25,10 +26,13 @@ export const Character = () => {
                 <h1>{character.name}</h1>
                 <ul>
                     <li>
-                        Birth year: {character.birth_year}
+                        Species: {character.species}
                     </li>
                     <li>
-                        Eyes color: {character.eye_color}
+                        Skin color: {character.skin_color}
+                    </li>
+                    <li>
+                        ID: {character.id}
                     </li>
                 </ul>
             </div>

@@ -1,11 +1,15 @@
-import { peopleUrl, fetchWrapper } from "../api";
+import { peopleUrl, fetchWrapper, baseUrl } from "../api";
+
+const peopleEndpoint = `${baseUrl}${peopleUrl}`;
 
 export const getPeople = () => {
-  return fetchWrapper(peopleUrl).then((peopleData) => peopleData.content);
+  return fetchWrapper(`${peopleEndpoint}`).then((peopleData) => {
+    return peopleData.content;
+  });
 };
 
-export const getPerson = (uid) => {
-  return fetchWrapper(`${peopleUrl}${uid}`).then(
-    (personData) => personData.result,
+export const getPerson = (id) => {
+  return fetchWrapper(`${peopleEndpoint}${id}`).then(
+    (personData) => personData.content,
   );
 };

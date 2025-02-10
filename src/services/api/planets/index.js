@@ -1,11 +1,15 @@
-import { planetsUrl, fetchWrapper } from "../api";
+import { planetsUrl, fetchWrapper, baseUrl } from "../api";
+
+const planetsEndpoint = `${baseUrl}${planetsUrl}`;
 
 export const getPlanetsList = () => {
-  return fetchWrapper(planetsUrl).then((planetsData) => planetsData.content);
+  return fetchWrapper(`${planetsEndpoint}`).then(
+    (planetsData) => planetsData.content,
+  );
 };
 
-export const getPlanet = (uid) => {
-  return fetchWrapper(`${planetsUrl}${uid}`).then(
-    (planetData) => planetData.result,
+export const getPlanet = (id) => {
+  return fetchWrapper(`${planetsEndpoint}${id}`).then(
+    (planetData) => planetData.content,
   );
 };

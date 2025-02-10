@@ -1,11 +1,15 @@
-import { filmsUrl, fetchWrapper } from "../api";
+import { baseUrl, filmsUrl, fetchWrapper } from "../api";
+
+const filmsEndpoint = `${baseUrl}${filmsUrl}`;
 
 export const getMoviesList = () => {
-  return fetchWrapper(filmsUrl).then((moviesData) => moviesData.content);
+  return fetchWrapper(`${filmsEndpoint}`).then((moviesData) => {
+    return moviesData.content;
+  });
 };
 
-export const getMovie = (uid) => {
-  return fetchWrapper(`${filmsUrl}/${uid}`).then(
-    (movieData) => movieData.result,
+export const getMovie = (id) => {
+  return fetchWrapper(`${filmsEndpoint}}${id}`).then(
+    (movieData) => movieData.content,
   );
 };

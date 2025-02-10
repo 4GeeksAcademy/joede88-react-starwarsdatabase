@@ -19,9 +19,10 @@ export const Planets = () => {
     }, [])
 
     const isFavorite = (id, type) => {
-        return favoritos.some((fav) => {
-            return fav.id === id && fav.type === type
+        return Array.isArray(favoritos) && favoritos.some((fav) => { 
+            return fav.external_id === id && fav.type_enum === type
         })
+        
     }
 
     return (

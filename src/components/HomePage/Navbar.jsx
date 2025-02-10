@@ -22,32 +22,37 @@ export const NavBar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {routerConfig.map((ruta) => {
-              return (
-                <NavLink key={ruta.path} to={ruta.path} className="p-3" end>
-                  {ruta.name}
-                </NavLink>
-              );
-            })}
-            <Nav>
-              {!isEmpty(favoritos) && (
+            <Nav className="me-auto">
+              {routerConfig.map((ruta) => {
+                return (
+                  <NavLink key={ruta.path} to={ruta.path} className="p-3" end>
+                    {ruta.name}
+                  </NavLink>
+                );
+              })}
+            </Nav>
+            {!isEmpty(favoritos) && (
+              <Nav>
                 <NavDropdown
                   id="nav-dropdown-dark-example"
                   title="Favorites"
                   menuVariant="light"
                 >
-                  {Array.isArray(favoritos) && favoritos.map((fav) => {
+                  {favoritos.map((fav) => {
                     return (
-                        <NavDropdown.Item key={`${fav.type_enum}${fav.id}`}>
-                          <NavLink to={`${fav.type_enum}/${fav.external_id}`}>
-                            {fav.name}
-                          </NavLink>
-                          <Badge bg="danger" className='ms-2' onClick={() => { deleteFavorite(fav.external_id, fav.type_enum) }}>X</Badge>
-                        </NavDropdown.Item>
+                      <NavDropdown.Item as="div" key={`${fav.type_enum}${fav.favorite_id}`}>
+                        <NavLink to={`${fav.type_enum}/${fav.external_id}`}>
+                          {fav.name}
+                        </NavLink>
+                        <Badge as="button" bg="danger" className='ms-2' onClick={() => {
+                          deleteFavorite(fav.external_id, fav.type_enum, fav.favorite_id)
+                        }}>X</Badge>
+                      </NavDropdown.Item>
                     )
                   })}
-                </NavDropdown>)}
-            </Nav>
+                </NavDropdown>
+              </Nav>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -14,16 +14,9 @@ export const Movies = () => {
     let user_id = 1
 
     useEffect(() => {
-        getMoviesList()
-            .then((movies) => {
-                setMovies(movies)})
-        getUserFavorites(user_id).then((favs)=>{
-            setFavoritos(favs)})
+        getMoviesList().then((movies) => {setMovies(movies)})
+        getUserFavorites(user_id).then((favs)=>{setFavoritos(favs)})
     }, [user_id,setFavoritos])
-
-     const isFavorite = (external_id, type_enum) => {
-        return favoritos.find((fav) =>  fav.external_id === external_id && fav.type_enum === type_enum)
-    }
  
     return (
         <div className="container-fluid ">
@@ -51,7 +44,8 @@ export const Movies = () => {
                                         isFavorite
                                             ? deleteFavorite(isFavorite.external_id, "films",isFavorite.favorite_id)
                                             : addFavorite(film.id, film.name, "films")
-                                    }}>{isFavorite ? "Unfav" : "Add to favs"}</Button>
+                                    }}>{isFavorite ? "Unfav" : "Add to favs"}
+                                    </Button>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

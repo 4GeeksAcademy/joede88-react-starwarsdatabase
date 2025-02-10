@@ -4,7 +4,7 @@ import { getUserFavorites } from "../services/api/users";
 export const ContextoFavoritos = createContext({
     favoritos: [],
     setFavoritos: () => { },
-    deleteFavorite: () => { },
+    deleteFavorite: (id) => { },
     addFavorite: () => { },
     isLoading: false,
     setIsLoading: ()=> {}

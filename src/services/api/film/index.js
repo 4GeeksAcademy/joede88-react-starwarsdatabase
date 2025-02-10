@@ -9,7 +9,7 @@ export const getMoviesList = () => {
 };
 
 export const getMovie = (id) => {
-  return fetchWrapper(`${filmsEndpoint}}${id}`).then(
+  return fetchWrapper(`${filmsEndpoint}${id}`).then(
     (movieData) => movieData.content,
   );
 };

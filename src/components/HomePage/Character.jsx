@@ -12,8 +12,6 @@ export const Character = () => {
         setIsLoading(true)
         getPerson(id)
             .then((person) => {
-                console.log(person);
-                
                 setCharacter(person)
             })
             .finally(()=>setIsLoading(false))

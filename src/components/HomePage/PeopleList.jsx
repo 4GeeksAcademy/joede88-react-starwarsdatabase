@@ -15,10 +15,7 @@ export const PeopleList = () => {
     let user_id = 1
 
     useEffect(() => {
-        getPeople()
-            .then((people) => {
-                setPeople(people)
-            })
+        getPeople().then((people) => {setPeople(people)})
         getUserFavorites(user_id).then((favs)=>{setFavoritos(favs)})
     }, [user_id,setFavoritos])
 

@@ -20,7 +20,7 @@ export const getUserFavorites = (user_id) => {
   });
 };
 
-export const postUserFavorite = (user_id, id, name, type_enum) => {
+/* export const postUserFavorite = (user_id, id, name, type_enum) => {
   return fetchWrapper(
     `https://upgraded-enigma-r4pgp656qv59f5g66-3000.app.github.dev/users/${user_id}/favorites`,
     {
@@ -52,3 +52,4 @@ export const deleteUserFavorite = (user_id, favorite_id) => {
     return data;
   });
 };
+ */

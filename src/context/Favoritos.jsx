@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getUserFavorites } from "../services/api/users";
+import { deleteUserFavorite, getUserFavorites, postUserFavorite } from "../services/api/users";
 
 export const ContextoFavoritos = createContext({
     favoritos: [],
@@ -18,46 +18,27 @@ export const ProviderFavoritos = ({ children }) => {
     const user_id = 1
 
     const getFavorites = () => {
-        getUserFavorites(user_id).then((data) => {
-            
+        getUserFavorites(user_id).then((data) => {        
             setFavoritos(data)})
     }
-                // FUNCION POST OK, PDTE PASARLO AL INDEX
-    const addFavorite = ( id, name, type_enum) => {
-        return fetch(`https://upgraded-enigma-r4pgp656qv59f5g66-3000.app.github.dev/users/${user_id}/favorites`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                external_id: id,
-                name: name,
-                type_enum: type_enum
-            })
-        })
-        .then((response)=> response.json())
-        .then((data) =>  {
-            setFavoritos(prevFavoritos=>[...prevFavoritos,data])
+                //OK ADDFAVORITE LLAMANDO A POSTUSERFAVORITE EN INDEX
+    const addFavorite = (external_id,name,type_enum) => {
+        postUserFavorite(user_id,external_id,name,type_enum).then(()=>{
+            getFavorites();
+        });
+    }
+
+ 
+                //OK DELETEFAVORITE LLAMANDO A DELETEUSERFAVORITE EN USER INDEX
+
+    const deleteFavorite = (external_id,type_enum) => {
+        const favoriteId = favoritos.find((fav)=>{
+            return fav.type_enum === type_enum && fav.external_id === external_id}).favorite_id
+        deleteUserFavorite(user_id,favoriteId).then(()=>{
+            getFavorites()
         })
     }
-    
-                // FUNCION DELETE OK, PDTE PASARLO AL INDEX
-    const deleteFavorite = (external_id, type_enum,favorite_id) => {
-        return fetch(`https://upgraded-enigma-r4pgp656qv59f5g66-3000.app.github.dev/users/${user_id}/favorites`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              external_id: external_id,
-              type_enum: type_enum
-            }),
-          })
-          .then((response)=> response.json())
-          .then(() => {
-          setFavoritos(prevFavoritos => prevFavoritos.filter(fav => fav.favorite_id !== favorite_id))
-          });
-        };
+      
     
 
     useEffect(()=> {

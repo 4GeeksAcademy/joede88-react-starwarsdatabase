@@ -42,7 +42,7 @@ export const Planets = () => {
                                     </NavLink>
                                     <Button onClick={() => {
                                         isFavorite
-                                            ? deleteFavorite(isFavorite.external_id, "planets",isFavorite.favorite_id)
+                                            ? deleteFavorite(isFavorite.external_id, "planets")
                                             : addFavorite(planet.id, planet.name, "planets")
                                     }}>{isFavorite ? "Unfav" : "Add to favs"}</Button>
                                 </Card.Text>

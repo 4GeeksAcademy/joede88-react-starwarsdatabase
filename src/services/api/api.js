@@ -6,9 +6,12 @@ export const filmsUrl = "films/";
 export const peopleUrl = "people/";
 export const planetsUrl = "planets/";
 
-export const fetchWrapper = (url) => {
-  return fetch(url)
-    .then((data) => data.json())
+export const fetchWrapper = (url, init) => {
+  return fetch(url, init)
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
     .catch((error) => {
       return error;
     });

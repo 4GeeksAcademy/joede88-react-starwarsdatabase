@@ -20,7 +20,7 @@ export const getUserFavorites = (user_id) => {
   });
 };
 
-/* export const postUserFavorite = (user_id, id, name, type_enum) => {
+export const postUserFavorite = (user_id, id, name, type_enum) => {
   return fetchWrapper(
     `https://upgraded-enigma-r4pgp656qv59f5g66-3000.app.github.dev/users/${user_id}/favorites`,
     {
@@ -35,21 +35,22 @@ export const getUserFavorites = (user_id) => {
       }),
     },
   ).then((data) => {
+    console.log(data);
+
     return data;
   });
 };
 
-export const deleteUserFavorite = (user_id, favorite_id) => {
+export const deleteUserFavorite = (user_id, favoriteId) => {
   return fetchWrapper(`${usersEndpoint}${user_id}/favorites`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      id: favorite_id,
+      favorite_id: favoriteId,
     }),
   }).then((data) => {
     return data;
   });
 };
- */

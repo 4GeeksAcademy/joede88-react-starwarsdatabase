@@ -5,18 +5,14 @@ import { ContextoFavoritos } from "../../context/Favoritos";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { getMoviesList } from "../../services/api/film";
-import { getUserFavorites } from "../../services/api/users";
 
 export const Movies = () => {
     const [movies, setMovies] = useState([])
-    const { favoritos, setFavoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos);
-
-    let user_id = 1
+    const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos);
 
     useEffect(() => {
         getMoviesList().then((movies) => {setMovies(movies)})
-        getUserFavorites(user_id).then((favs)=>{setFavoritos(favs)})
-    }, [user_id,setFavoritos])
+    }, [])
  
     return (
         <div className="container-fluid ">
@@ -24,7 +20,7 @@ export const Movies = () => {
             <Row xs={1} md={2} className="g-2">
                 {movies.map((film, idx) => {
                     const isFavorite = favoritos.find((fav) => fav.external_id === film.id && fav.type_enum === "films")
-
+                                
                     return (
                     <Col key={idx}>
                         <Card className="bg-black text-center">

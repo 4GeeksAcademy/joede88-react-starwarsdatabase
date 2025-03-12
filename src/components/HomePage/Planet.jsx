@@ -5,11 +5,13 @@ import { ContextoFavoritos } from "../../context/Favoritos";
 import { getPlanet } from "../../services/api/planets";
 
 export const Planet = () => {
-    const [planet, setPlanet] = useState([])
+    const [planet, setPlanet] = useState({})
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
-    let { id } = useParams();
+    const { id } = useParams();
+    console.log("ID obtenido de useParams:", id);
 
     useEffect(() => {
+        if (!id) return;
         setIsLoading(true)
         getPlanet(id)
             .then(planet => {

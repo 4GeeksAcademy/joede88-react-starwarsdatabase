@@ -4,7 +4,7 @@ import { ContextoFavoritos } from "../../context/Favoritos"
 import { getPerson } from "../../services/api/people"
 
 export const Character = () => {
-    const [character, setCharacter] = useState([])
+    const [character, setCharacter] = useState({})
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
     const { id } = useParams()
 

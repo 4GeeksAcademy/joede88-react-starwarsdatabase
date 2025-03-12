@@ -1,52 +1,39 @@
-import { baseUrl, userUrl, fetchWrapper } from "../api";
+import { baseUrl, fetchWrapper } from "../api";
 
-const usersEndpoint = `${baseUrl}${userUrl}`;
+const usersEndpoint = `${baseUrl}/favorites`;
 
-export const getUsers = () => {
-  return fetchWrapper(usersEndpoint).then((data) => {
+export const getUserFavorites = async () => {
+  return fetchWrapper(usersEndpoint, {
+    credentials: "include",
+  }).then((data) => {
     return data;
   });
 };
 
-export const getUser = (user_id) => {
-  return fetchWrapper(`${usersEndpoint}${user_id}`).then((data) => {
-    return data.content;
-  });
-};
-
-export const getUserFavorites = (user_id) => {
-  return fetchWrapper(`${usersEndpoint}${user_id}/favorites`).then((data) => {
-    return data.content;
-  });
-};
-
-export const postUserFavorite = (user_id, id, name, type_enum) => {
-  return fetchWrapper(
-    `https://upgraded-enigma-r4pgp656qv59f5g66-3000.app.github.dev/users/${user_id}/favorites`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        external_id: id,
-        name: name,
-        type_enum: type_enum,
-      }),
+export const postUserFavorite = async (external_id, name, type_enum) => {
+  return await fetchWrapper(usersEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  ).then((data) => {
-    console.log(data);
-
+    credentials: "include",
+    body: JSON.stringify({
+      external_id: external_id,
+      name: name,
+      type_enum: type_enum,
+    }),
+  }).then((data) => {
     return data;
   });
 };
 
-export const deleteUserFavorite = (user_id, favoriteId) => {
-  return fetchWrapper(`${usersEndpoint}${user_id}/favorites`, {
+export const deleteUserFavorite = async (favoriteId) => {
+  return await fetchWrapper(usersEndpoint, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       favorite_id: favoriteId,
     }),

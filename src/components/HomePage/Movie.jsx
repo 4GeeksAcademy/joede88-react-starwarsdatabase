@@ -4,7 +4,7 @@ import { ContextoFavoritos } from "../../context/Favoritos";
 import { getMovie } from "../../services/api/film";
 
 export const Movie = () => {
-    const [film, setFilm] = useState([])
+    const [film, setFilm] = useState({})
     const {isLoading,setIsLoading} = useContext(ContextoFavoritos)
     const { id } = useParams();
 

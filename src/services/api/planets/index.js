@@ -9,7 +9,7 @@ export const getPlanetsList = () => {
 };
 
 export const getPlanet = (id) => {
-  return fetchWrapper(`${planetsEndpoint}${id}`).then(
-    (planetData) => planetData.content,
-  );
+  return fetchWrapper(`${planetsEndpoint}${id}`).then((planetData) => {
+    return planetData.content;
+  });
 };

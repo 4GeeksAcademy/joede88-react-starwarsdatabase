@@ -1,15 +1,17 @@
-import App from "../App";
 import { Movies } from "../components/HomePage/MoviesList";
+import { Movie } from "../components/HomePage/Movie";
 import { PeopleList } from "../components/HomePage/PeopleList";
-import { Planets } from "../components/HomePage/PlanetsList";
+import { PlanetsList } from "../components/HomePage/PlanetsList";
+import { Planet } from "../components/HomePage/Planet";
+import { Character } from "../components/HomePage/Character";
+import HomePage from "../pages/HomePage";
 
 export const routerConfig = [
   {
-    name: "Home",
+    name: "Home Page",
     path: "/",
-    page: <App />,
+    page: <HomePage />,
   },
-
   {
     name: "Movies",
     path: "/films",
@@ -23,6 +25,21 @@ export const routerConfig = [
   {
     name: "Planets",
     path: "/planets",
-    page: <Planets />,
+    page: <PlanetsList />,
+  },
+  {
+    name: "Character",
+    path: "/people/:id",
+    page: <Character />,
+  },
+  {
+    name: "Planet",
+    path: "/planets/:id",
+    page: <Planet />,
+  },
+  {
+    name: "Movie",
+    path: "films/:id",
+    page: <Movie />,
   },
 ];

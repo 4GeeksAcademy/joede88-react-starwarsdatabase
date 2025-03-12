@@ -1,6 +1,6 @@
 import { Movies } from "../components/HomePage/MoviesList";
 import { PeopleList } from "../components/HomePage/PeopleList";
-import { Planets } from "../components/HomePage/PlanetsList";
+import { PlanetsList } from "../components/HomePage/PlanetsList";
 
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
     <>
       <Movies />
       <PeopleList />
-      <Planets />
+      <PlanetsList/>
     </>
   );
 };

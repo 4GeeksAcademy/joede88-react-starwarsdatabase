@@ -5,18 +5,14 @@ import { ContextoFavoritos } from "../../context/Favoritos";
 
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { getPlanetsList } from "../../services/api/planets";
-import { getUserFavorites } from "../../services/api/users";
 
-export const Planets = () => {
+export const PlanetsList = () => {
     const [planets, setPlanets] = useState([])
-    const { favoritos, addFavorite, deleteFavorite,setFavoritos } = useContext(ContextoFavoritos)
-
-    let user_id = 1
+    const { favoritos, addFavorite, deleteFavorite } = useContext(ContextoFavoritos)
 
     useEffect(() => {
         getPlanetsList().then(planets => {setPlanets(planets)})
-        getUserFavorites(user_id).then((favs)=>{setFavoritos(favs)})
-    }, [user_id,setFavoritos])
+    }, [])
 
     return (
         <div className="container-fluid">
